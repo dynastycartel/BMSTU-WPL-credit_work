@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  planet_name: MyString
+  nearest_star_name: MyString
+  distance_in_ly: 1
+  description: MyText
+
+two:
+  planet_name: MyString
+  nearest_star_name: MyString
+  distance_in_ly: 1
+  description: MyText

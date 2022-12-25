@@ -1,0 +1,56 @@
+<h2 align="center"><%= @planet.planet_name %></h2>
+<br/>
+
+<p>
+	<%= image_tag 'rocket_icon.svg', width: "18rem" %>
+	Имя ближайшей звезды: <%= @planet.nearest_star_name %>
+</p>
+<p>
+	<%= image_tag 'rocket_icon.svg', width: "18rem" %>
+	Расстояние от Земли: <%= @planet.distance_in_ly %> 
+	<% if (@planet.distance_in_ly % 10) == 1 %>
+		световой год
+	<% elsif (@planet.distance_in_ly % 10).between?(2, 4) %>
+		световых года
+	<% else %>
+		световых лет
+	<% end %>
+</p>
+<p>
+	<%= image_tag 'rocket_icon.svg', width: "18rem" %>
+	Описание: <%= @planet.description %>
+</p>
+<p>
+	<%= image_tag @planet.picture, width: '350rem', class: 'rounded' %>
+</p>
+<br/><br/><br/>
+<% if session[:user_id] %>
+
+	<div class="custom-row">
+		<div class="cutsom-col">
+			<% already_want_to_visit = DesiredPlanet.find_by(user_id: session[:user_id], planet_id: @planet.id) %>
+			<% unless already_want_to_visit %>
+				<% unless @planet.free_space - @want_to_visit_count == 0 %>
+					<%= button_to 'Хочу посетить!', {:controller => 'desired_planets', :action => 'create', :user_id => session[:user_id], :planet_id => @planet.id}, class: 'btn btn-outline-dark' %>
+				<% else %>
+					<button class="btn btn-outline-dark" disabled>Записаться невозможно.</button>
+				<% end %>
+			<% else %>
+				<%= button_to 'Не хочу посещать.', {:controller => 'desired_planets', :action => 'destroy', :user_id => session[:user_id], :planet_id => @planet.id}, class: 'btn btn-outline-dark' %>
+			<% end %>
+		</div>
+		<% if User.find(session[:user_id]).superuser %>
+		<div class="custom-col">
+			<%= button_to 'Удалить планету', {:controller => 'planets', :action => 'destroyy', :user_id => session[:user_id], :planet_id => @planet.id}, class: 'btn btn-outline-dark' %>
+		</div>
+		<% end %>
+	</div>
+<% else %>
+	<p>
+		Чтобы отметиться, что Вы хотите посетить эту планету, вам необходимо войти в аккаунт.
+	</p>
+<% end %>
+<br/>
+<p>
+	Свободных мест: <%= @planet.free_space - @want_to_visit_count %>
+</p>

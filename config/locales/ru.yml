@@ -1,0 +1,31 @@
+ru:
+  activerecord:
+    models:
+      user: 'Пользователь'
+      planet: 'Планета'
+      desired_planet: 'Желаемая к посещению планета'
+    attributes:
+      user:
+        email: 'Адрес эл. почты'
+        contact_name: 'Имя пользователя'
+        password: 'Пароль'
+        password_confirmation: 'Пароли'
+      planet:
+        planet_name: 'Имя планеты'
+        nearest_star_name: 'Имя ближайшей звезды'
+        distance_in_ly: 'Расстояние в световых годах'
+        free_space: 'Количество свободных мест'
+        picture: 'Фото'
+        description: 'Описание'
+    errors:
+      messages:
+        format: '%{attribute}%{message}'
+        blank: 'не может быть пустым'
+        not_a_number: 'должно быть числом'
+        greater_than_or_equal_to: 'должно быть больше или равно %{count}'
+        greater_than: 'должно быть больше %{count}'
+        taken: 'уже существует'
+        confirmation: 'не совпадают'
+  support:
+    array:
+      last_word_connector: ' и '

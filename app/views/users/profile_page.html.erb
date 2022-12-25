@@ -1,0 +1,18 @@
+<h2 align="center">Здравствуйте, <%= @user.contact_name %>!</h2>
+<br/>
+<% wanted_planets = DesiredPlanet.where(user_id: session[:user_id]).pluck(:planet_id) %>
+<% if wanted_planets.length != 0 %>
+<p>
+	Планеты, которые Вы хотите посетить:
+	<% wanted_planets.each do |wanted_planet| %>
+		<p>
+			<%= image_tag 'planet_icon.svg', width: '18rem' %>&nbsp;
+			<%= link_to Planet.find(wanted_planet).planet_name, '/planets/%d' % wanted_planet, style: 'color: black;' %>
+		</p>
+	<% end %>
+</p>
+<% else %>
+<p>
+	Вы не хотите посетить никакие планеты.
+</p>
+<% end %>

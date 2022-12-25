@@ -1,0 +1,22 @@
+<h2 align="center">Планеты</h2>
+<br/>
+
+<% planets = Planet.all %>
+
+<% planets.each_slice(3) do |elems| %>
+	<div class="row1">
+		<% elems.each do |planet| %>
+			<div class="col1">
+				<div class="card" style="width: 18rem; height: 475px;">
+					<%= image_tag planet.picture, class: 'card-img-top' %>
+					<div class="card-body">
+						<h5 class="card-title"><%= planet.planet_name %></h5>
+						<p class="card-text"><%= planet.description %></p>
+						<%= button_to 'Подробнее', planet_show_path(planet.id), method: :get, class: 'btn btn-outline-dark' %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<br/>
+<% end %>

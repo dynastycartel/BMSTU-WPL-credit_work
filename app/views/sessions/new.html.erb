@@ -1,0 +1,16 @@
+<h2 align="center">Вход</h2>
+<br/>
+
+<%= form_with url: '/sessions/create', method: :post do |form| %>
+	<p>
+		<%= form.label 'Адрес эл. почты', class: 'form-label' %>
+		<%= form.email_field :email, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.label 'Пароль', class: 'form-label' %>
+		<%= form.password_field :password, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.submit 'Войти', class: 'btn btn-outline-dark' %>
+	</p>
+<% end %>

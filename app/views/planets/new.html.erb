@@ -1,0 +1,32 @@
+<h2>Добавить планету</h2>
+<br/>
+
+<%= form_with url: '/planets/create', method: :post do |form| %>
+	<p>
+		<%= form.label 'Имя планеты', class: 'form-label' %>
+		<%= form.text_field :planet_name, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.label 'Фотография', class: 'form-label' %>
+		<%= form.file_field :picture, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.label 'Имя ближайшей звезды', class: 'form-label' %>
+		<%= form.text_field :nearest_star_name, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.label 'Расстояние в световых годах', class: 'form-label' %>
+		<%= form.number_field :distance_in_ly, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.label 'Описание', class: 'form-label' %>
+		<%= form.text_field :description, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.label 'Количество мест на посещение', class: 'form-label' %>
+		<%= form.number_field :free_space, class: 'form-control' %>
+	</p>
+	<p>
+		<%= form.submit 'Добавить планету', class: 'btn btn-outline-dark' %>
+	</p>
+<% end %>
